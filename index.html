@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Optical Order Entry</title>
+<link rel="icon" href="WKClogo.jpg" type="image/jpeg">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Noto+Sans+Khmer:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -61,13 +62,9 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* ── HEADER ── */
-  .header {
-    text-align: center;
-    margin-bottom: 28px;
-  }
+  /* HEADER */
+  .header { text-align: center; margin-bottom: 28px; }
   .header-eyebrow {
-    font-family: 'DM Sans', sans-serif;
     font-size: 0.65rem;
     font-weight: 600;
     letter-spacing: 0.22em;
@@ -88,18 +85,12 @@
     background: linear-gradient(90deg, transparent, var(--gold));
   }
   .header-eyebrow::after { transform: scaleX(-1); }
-
   .header h1 {
-    font-family: 'DM Sans', sans-serif;
     font-size: 1.9rem;
     font-weight: 600;
     color: var(--text-primary);
     letter-spacing: -0.03em;
     line-height: 1.1;
-  }
-  .header h1 span {
-    color: var(--gold);
-    font-weight: 300;
   }
   .header-sub {
     margin-top: 6px;
@@ -109,7 +100,7 @@
     letter-spacing: 0.06em;
   }
 
-  /* ── CARD ── */
+  /* CARD */
   .card {
     background: var(--white);
     border-radius: 20px;
@@ -121,7 +112,7 @@
       0 16px 40px rgba(0,0,0,0.05);
   }
 
-  /* ── SECTIONS ── */
+  /* SECTIONS */
   .section {
     padding: 22px 24px;
     border-bottom: 1px solid var(--border-light);
@@ -135,17 +126,18 @@
     margin-bottom: 18px;
   }
   .section-icon {
-    width: 30px;
-    height: 30px;
+    width: 30px; height: 30px;
     background: var(--surface);
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.85rem;
     border: 1px solid var(--border);
     flex-shrink: 0;
   }
+  /* SVG icons inside section-icon */
+  .section-icon svg { width: 16px; height: 16px; }
+
   .section-title-block { display: flex; flex-direction: column; gap: 1px; }
   .section-label-en {
     font-size: 0.65rem;
@@ -162,7 +154,7 @@
     line-height: 1.3;
   }
 
-  /* ── FIELD LABELS ── */
+  /* FIELD LABELS */
   .field-label { margin-bottom: 6px; }
   .field-label .en {
     display: block;
@@ -182,7 +174,7 @@
     line-height: 1.4;
   }
 
-  /* ── PRODUCT ROW — perfectly aligned ── */
+  /* PRODUCT ROW */
   .product-row {
     display: grid;
     grid-template-columns: 1fr 130px;
@@ -192,7 +184,7 @@
   }
   .product-row:last-of-type { margin-bottom: 0; }
 
-  /* ── INPUTS ── */
+  /* INPUTS */
   input, select, textarea {
     width: 100%;
     font-family: 'DM Sans', sans-serif;
@@ -209,10 +201,7 @@
     appearance: none;
     display: block;
   }
-  input::placeholder, textarea::placeholder {
-    color: var(--text-muted);
-    font-weight: 300;
-  }
+  input::placeholder, textarea::placeholder { color: var(--text-muted); font-weight: 300; }
   input:focus, select:focus, textarea:focus {
     background: var(--white);
     border-color: rgba(184,152,106,0.5);
@@ -223,12 +212,8 @@
   input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
   textarea { resize: none; line-height: 1.6; }
 
-  /* ── PRICE FIELD ── */
-  .price-wrap {
-    position: relative;
-    display: flex;
-    align-items: center;
-  }
+  /* PRICE FIELD */
+  .price-wrap { position: relative; display: flex; align-items: center; }
   .price-symbol {
     position: absolute;
     left: 12px;
@@ -246,7 +231,7 @@
     font-weight: 500;
   }
 
-  /* ── SELECT ARROW ── */
+  /* SELECT ARROW */
   .select-wrap { position: relative; }
   .select-wrap::after {
     content: '';
@@ -262,7 +247,7 @@
   }
   .select-wrap select { padding-right: 32px; }
 
-  /* ── TWO-COL GRID ── */
+  /* TWO-COL GRID */
   .field-row-2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -271,11 +256,11 @@
   }
   .field-row-2:last-child { margin-bottom: 0; }
 
-  /* ── SINGLE FIELD ── */
+  /* SINGLE FIELD */
   .field { margin-bottom: 12px; }
   .field:last-child { margin-bottom: 0; }
 
-  /* ── DISCOUNT ── */
+  /* DISCOUNT */
   #promo_btn {
     background: none;
     border: 1px dashed var(--gold);
@@ -334,7 +319,126 @@
     box-shadow: 0 2px 8px rgba(184,152,106,0.3);
   }
 
-  /* ── TOTAL ── */
+  /* ── IMAGE UPLOAD ── */
+  .upload-zone {
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    background: var(--surface);
+    position: relative;
+    overflow: hidden;
+  }
+  .upload-zone:hover,
+  .upload-zone.drag-over {
+    border-color: var(--gold);
+    background: var(--gold-soft);
+  }
+  .upload-zone input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: none;
+    border-radius: 0;
+  }
+  .upload-icon {
+    width: 36px; height: 36px;
+    background: var(--white);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+    transition: border-color 0.2s;
+  }
+  .upload-zone:hover .upload-icon { border-color: var(--gold); }
+  .upload-icon svg { width: 18px; height: 18px; stroke: var(--gold); }
+  .upload-label-en {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    letter-spacing: 0.06em;
+  }
+  .upload-label-km {
+    font-family: 'Noto Sans Khmer', sans-serif;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+  .upload-hint {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    margin-top: 6px;
+    letter-spacing: 0.04em;
+  }
+
+  /* IMAGE PREVIEW STRIP */
+  .preview-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .preview-item {
+    position: relative;
+    width: 68px;
+    height: 68px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+    animation: fadeUp 0.3s cubic-bezier(0.16,1,0.3,1) both;
+  }
+  .preview-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .preview-remove {
+    position: absolute;
+    top: 3px; right: 3px;
+    width: 18px; height: 18px;
+    background: rgba(26,26,46,0.75);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    transition: background 0.15s;
+    font-size: 0;
+  }
+  .preview-remove:hover { background: var(--danger); }
+  .preview-remove::before,
+  .preview-remove::after {
+    content: '';
+    position: absolute;
+    width: 8px; height: 1.5px;
+    background: white;
+    border-radius: 1px;
+  }
+  .preview-remove::before { transform: rotate(45deg); }
+  .preview-remove::after  { transform: rotate(-45deg); }
+  .preview-count {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    margin-top: 8px;
+    display: none;
+  }
+  .preview-count.visible { display: block; }
+
+  /* TOTAL */
   .total-section {
     padding: 20px 24px;
     background: var(--surface);
@@ -346,7 +450,7 @@
     justify-content: space-between;
     gap: 16px;
   }
-  .total-left { flex: 1; }
+  .total-left { flex: 1; min-width: 0; }
   .total-label-text {
     font-size: 0.62rem;
     font-weight: 600;
@@ -366,9 +470,9 @@
     color: var(--text-muted);
     font-weight: 300;
     min-height: 16px;
+    word-break: break-word;
   }
   .total-amount {
-    font-family: 'DM Sans', sans-serif;
     font-size: 2.6rem;
     font-weight: 600;
     color: var(--text-primary);
@@ -376,6 +480,7 @@
     line-height: 1;
     transition: transform 0.15s cubic-bezier(0.34,1.56,0.64,1), color 0.2s;
     white-space: nowrap;
+    flex-shrink: 0;
   }
   .total-amount.bump { transform: scale(1.05); color: var(--gold); }
   .total-currency {
@@ -386,7 +491,7 @@
     margin-right: 1px;
   }
 
-  /* ── PHONE ── */
+  /* PHONE — fixed: no space after +855 */
   .phone-wrap { position: relative; }
   .phone-prefix {
     position: absolute;
@@ -400,10 +505,12 @@
     opacity: 0;
     transition: opacity 0.2s;
     white-space: nowrap;
+    letter-spacing: 0;
   }
   .phone-prefix.visible { opacity: 1; }
+  /* +855 = ~38px wide at 0.88rem DM Sans */
   #phone { padding-left: 13px; transition: padding-left 0.2s; }
-  #phone.has-prefix { padding-left: 86px; }
+  #phone.has-prefix { padding-left: 46px; }
   #phone.error {
     border-color: var(--danger);
     box-shadow: 0 0 0 3px rgba(217,4,41,0.08);
@@ -415,14 +522,13 @@
     75% { transform: translateX(4px); }
   }
 
-  /* ── BUTTONS ── */
+  /* BUTTONS */
   .btn-section {
     padding: 18px 24px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
   }
-
   button {
     font-family: 'DM Sans', sans-serif;
     font-size: 0.78rem;
@@ -440,7 +546,6 @@
     gap: 8px;
   }
   button:active { transform: scale(0.98); }
-
   .btn-copy {
     background: var(--surface);
     color: var(--text-secondary);
@@ -452,7 +557,6 @@
     color: var(--text-primary);
     box-shadow: 0 2px 8px rgba(0,0,0,0.06);
   }
-
   .btn-save {
     background: var(--text-primary);
     color: var(--white);
@@ -464,7 +568,7 @@
     transform: translateY(-1px);
   }
 
-  /* ── TOAST ── */
+  /* TOAST */
   .toast {
     position: fixed;
     bottom: 28px;
@@ -500,7 +604,7 @@
     animation: spin 0.7s linear infinite;
   }
 
-  /* ── RX BADGE ── */
+  /* RX BADGE */
   .rx-badge {
     font-size: 0.58rem;
     font-weight: 600;
@@ -528,10 +632,16 @@
 
   <div class="card">
 
-    <!-- ① Product Details -->
+    <!-- Section 1: Product Details -->
     <div class="section">
       <div class="section-header">
-        <div class="section-icon">🕶️</div>
+        <div class="section-icon">
+          <!-- Glasses SVG -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="#b8986a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="7" cy="13" r="4"/><circle cx="17" cy="13" r="4"/>
+            <path d="M3 13c0-4 2-6 4-6M21 13c0-4-2-6-4-6M11 13h2"/>
+          </svg>
+        </div>
         <div class="section-title-block">
           <span class="section-label-en">Product Details</span>
           <span class="section-label-km">ព័ត៌មានផលិតផល</span>
@@ -590,7 +700,6 @@
           <button type="button" id="btn_flat" class="toggle-btn active" onclick="setDiscountType('flat')">$ Cash Off</button>
           <button type="button" id="btn_perc" class="toggle-btn" onclick="setDiscountType('perc')">% Percent</button>
         </div>
-
         <div class="product-row" style="margin-bottom:0;">
           <div>
             <div class="field-label">
@@ -613,10 +722,16 @@
       </div>
     </div>
 
-    <!-- ② Prescription -->
+    <!-- Section 2: Prescription -->
     <div class="section">
       <div class="section-header">
-        <div class="section-icon">👁️</div>
+        <div class="section-icon">
+          <!-- Eye SVG -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="#b8986a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </div>
         <div class="section-title-block">
           <span class="section-label-en">Prescription <span class="rx-badge">Rx</span></span>
           <span class="section-label-km">វេជ្ជបញ្ជា / ចក្ខុវិទ្យា</span>
@@ -629,7 +744,7 @@
             <span class="en">Left Eye — OS</span>
             <span class="km">ភ្នែកឆ្វេង</span>
           </div>
-          <input type="text" id="left_rx" placeholder="e.g. −3.00">
+          <input type="text" id="left_rx" placeholder="e.g. -3.00">
         </div>
         <div>
           <div class="field-label">
@@ -648,24 +763,24 @@
         <div class="select-wrap">
           <select id="purpose">
             <option value="" disabled selected>Select purpose · ជ្រើសរើស</option>
-            <optgroup label="Vision Correction · ការកែទស្សន៍">
-              <option value="Short-sighted (Myopia)">Short-sighted · ការមើលឃើញជិត (Myopia)</option>
-              <option value="Long-sighted (Hyperopia)">Long-sighted · ការមើលឃើញឆ្ងាយ (Hyperopia)</option>
+            <optgroup label="Vision Correction">
+              <option value="Short-sighted (Myopia)">Short-sighted (Myopia)</option>
+              <option value="Long-sighted (Hyperopia)">Long-sighted (Hyperopia)</option>
               <option value="Astigmatism">Astigmatism</option>
-              <option value="Presbyopia (Reading)">Presbyopia  (Reading)</option>
+              <option value="Presbyopia (Reading)">Presbyopia (Reading)</option>
               <option value="Progressive Lenses">Progressive</option>
               <option value="Bifocal Lenses">Bifocal</option>
             </optgroup>
-            <optgroup label="Protection · វ៉ែនតាការពារ">
-              <option value="Anti-Blue Light">Anti-Blue Light · ការពារកំារស្មីពណ៌ខៀវ</option>
-              <option value="Sunglasses (UV Protection)">Sunglasses · ការពារកំារស្មីព្រះអាទិត្យ</option>
-              <option value="Photochromic (Transition)">Photochromic · ប្តូរពណ៌</option>
-              <option value="Anti-Glare / Night Driving">Anti-Glare · បើកបរពេលយប់</option>
-              <option value="Computer / Screen Glasses">Computer Glasses · វ៉ែនតាកុំព្យូទ័រ</option>
-              <option value="Sports / Safety Glasses">Sports Glasses · វ៉ែនតាកីឡា</option>
+            <optgroup label="Protection">
+              <option value="Anti-Blue Light">Anti-Blue Light</option>
+              <option value="Sunglasses (UV Protection)">Sunglasses (UV Protection)</option>
+              <option value="Photochromic (Transition)">Photochromic (Transition)</option>
+              <option value="Anti-Glare / Night Driving">Anti-Glare / Night Driving</option>
+              <option value="Computer / Screen Glasses">Computer Glasses</option>
+              <option value="Sports / Safety Glasses">Sports Glasses</option>
             </optgroup>
-            <optgroup label="Fashion / Frame Only ">
-              <option value="Fashion / No Prescription">Fashion </option>
+            <optgroup label="Fashion / Frame Only">
+              <option value="Fashion / No Prescription">Fashion</option>
               <option value="Frame Only">Frame Only</option>
             </optgroup>
           </select>
@@ -673,10 +788,17 @@
       </div>
     </div>
 
-    <!-- ③ Customer & Delivery -->
+    <!-- Section 3: Customer & Delivery -->
     <div class="section">
       <div class="section-header">
-        <div class="section-icon">🚚</div>
+        <div class="section-icon">
+          <!-- Truck SVG -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="#b8986a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="3" width="15" height="13" rx="1"/>
+            <path d="M16 8h4l3 3v5h-7V8z"/>
+            <circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+          </svg>
+        </div>
         <div class="section-title-block">
           <span class="section-label-en">Customer &amp; Delivery</span>
           <span class="section-label-km">អតិថិជន និងការដឹកជញ្ជូន</span>
@@ -692,7 +814,7 @@
           </div>
           <div class="phone-wrap">
             <span class="phone-prefix" id="phone_prefix">+855</span>
-            <input type="tel" id="phone" placeholder="e.g. 12 345 6789" autocomplete="off"
+            <input type="tel" id="phone" placeholder="12 345 6789" autocomplete="off"
               oninput="handlePhone(this)"
               onkeydown="validatePhoneKey(event)"
               onpaste="handlePhonePaste(event)">
@@ -708,31 +830,31 @@
           <div class="select-wrap">
             <select id="location">
               <option value="" disabled selected>Select Province</option>
-              <option value="Phnom Penh">Phnom Penh · ភ្នំពេញ</option>
-              <option value="Banteay Meanchey">Banteay Meanchey · បន្ទាយមានជ័យ</option>
-              <option value="Battambang">Battambang · បាត់ដំបង</option>
-              <option value="Kampong Cham">Kampong Cham · កំពង់ចាម</option>
-              <option value="Kampong Chhnang">Kampong Chhnang · កំពង់ឆ្នាំង</option>
-              <option value="Kampong Speu">Kampong Speu · កំពង់ស្ពឺ</option>
-              <option value="Kampong Thom">Kampong Thom · កំពង់ធំ</option>
-              <option value="Kampot">Kampot · កំពត</option>
-              <option value="Kandal">Kandal · កណ្តាល</option>
-              <option value="Kep">Kep · កែប</option>
-              <option value="Koh Kong">Koh Kong · កោះកុង</option>
-              <option value="Kratie">Kratie · ក្រចេះ</option>
-              <option value="Mondulkiri">Mondulkiri · មណ្ឌលគីរី</option>
-              <option value="Oddar Meanchey">Oddar Meanchey · ឧត្តរមានជ័យ</option>
-              <option value="Pailin">Pailin · ប៉ៃលិន</option>
-              <option value="Preah Sihanouk">Preah Sihanouk · ព្រះសីហនុ</option>
-              <option value="Preah Vihear">Preah Vihear · ព្រះវិហារ</option>
-              <option value="Prey Veng">Prey Veng · ព្រៃវែង</option>
-              <option value="Pursat">Pursat · ពោធិ៍សាត់</option>
-              <option value="Ratanakiri">Ratanakiri · រតនគីរី</option>
-              <option value="Siem Reap">Siem Reap · សៀមរាប</option>
-              <option value="Stung Treng">Stung Treng · ស្ទឹងត្រែង</option>
-              <option value="Svay Rieng">Svay Rieng · ស្វាយរៀង</option>
-              <option value="Takeo">Takeo · តាកែវ</option>
-              <option value="Tboung Khmum">Tboung Khmum · ត្បូងឃ្មុំ</option>
+              <option value="Phnom Penh">Phnom Penh</option>
+              <option value="Banteay Meanchey">Banteay Meanchey</option>
+              <option value="Battambang">Battambang</option>
+              <option value="Kampong Cham">Kampong Cham</option>
+              <option value="Kampong Chhnang">Kampong Chhnang</option>
+              <option value="Kampong Speu">Kampong Speu</option>
+              <option value="Kampong Thom">Kampong Thom</option>
+              <option value="Kampot">Kampot</option>
+              <option value="Kandal">Kandal</option>
+              <option value="Kep">Kep</option>
+              <option value="Koh Kong">Koh Kong</option>
+              <option value="Kratie">Kratie</option>
+              <option value="Mondulkiri">Mondulkiri</option>
+              <option value="Oddar Meanchey">Oddar Meanchey</option>
+              <option value="Pailin">Pailin</option>
+              <option value="Preah Sihanouk">Preah Sihanouk</option>
+              <option value="Preah Vihear">Preah Vihear</option>
+              <option value="Prey Veng">Prey Veng</option>
+              <option value="Pursat">Pursat</option>
+              <option value="Ratanakiri">Ratanakiri</option>
+              <option value="Siem Reap">Siem Reap</option>
+              <option value="Stung Treng">Stung Treng</option>
+              <option value="Svay Rieng">Svay Rieng</option>
+              <option value="Takeo">Takeo</option>
+              <option value="Tboung Khmum">Tboung Khmum</option>
             </select>
           </div>
         </div>
@@ -747,27 +869,27 @@
           </div>
           <div class="select-wrap">
             <select id="del_co">
-              <option value="" disabled selected>Select Carrier · ជ្រើសរើស</option>
-              <optgroup label="Local Express · ក្នុងស្រុក">
+              <option value="" disabled selected>Select Carrier</option>
+              <optgroup label="Local Express">
                 <option value="VET Express">VET Express</option>
-                <option value="J&T Express">J&amp;T Express</option>
+                <option value="J&T Express">J&T Express</option>
                 <option value="Kerry Express">Kerry Express</option>
                 <option value="Ninjavan">Ninjavan</option>
                 <option value="Lalamove">Lalamove</option>
                 <option value="Grab Express">Grab Express</option>
                 <option value="Wing Delivery">Wing Delivery</option>
               </optgroup>
-              <optgroup label="National Post · ប្រៃសណីយ៍">
-                <option value="Cambodia Post">Cambodia Post · ប្រៃសណីយ៍ខ្មែរ</option>
+              <optgroup label="National Post">
+                <option value="Cambodia Post">Cambodia Post</option>
               </optgroup>
-              <optgroup label="International · អន្តរជាតិ">
+              <optgroup label="International">
                 <option value="DHL">DHL</option>
                 <option value="FedEx">FedEx</option>
                 <option value="EMS">EMS</option>
               </optgroup>
-              <optgroup label="Other · ផ្សេងៗ">
-                <option value="Self Pick-up">Self Pick-up · មកយកផ្ទាល់</option>
-                <option value="Other">Other · ផ្សេងទៀត</option>
+              <optgroup label="Other">
+                <option value="Self Pick-up">Self Pick-up</option>
+                <option value="Other">Other</option>
               </optgroup>
             </select>
           </div>
@@ -779,27 +901,74 @@
           </div>
           <div class="price-wrap">
             <span class="price-symbol">$</span>
-            <input type="number" id="del_fee" value="" placeholder="0.00" min="0" step="0.01" oninput="calc()">
+            <input type="number" id="del_fee" placeholder="0.00" min="0" step="0.01" oninput="calc()">
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ④ Notes -->
+    <!-- Section 4: Image Upload -->
     <div class="section">
       <div class="section-header">
-        <div class="section-icon">📝</div>
+        <div class="section-icon">
+          <!-- Image SVG -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="#b8986a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21 15 16 10 5 21"/>
+          </svg>
+        </div>
+        <div class="section-title-block">
+          <span class="section-label-en">Prescription / Product Images</span>
+          <span class="section-label-km">រូបភាពវេជ្ជបញ្ជា / ផលិតផល</span>
+        </div>
+      </div>
+
+      <div class="upload-zone" id="uploadZone"
+           ondragover="handleDragOver(event)"
+           ondragleave="handleDragLeave(event)"
+           ondrop="handleDrop(event)">
+        <input type="file" id="imageInput" accept="image/*" multiple onchange="handleFiles(this.files)">
+        <div class="upload-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 16 12 12 8 16"/>
+            <line x1="12" y1="12" x2="12" y2="21"/>
+            <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/>
+          </svg>
+        </div>
+        <div class="upload-label-en">Tap to upload or drag images here</div>
+        <div class="upload-label-km">ចុចដើម្បីផ្ទុករូបភាព ឬអូសមកទីនេះ</div>
+        <div class="upload-hint">JPG, PNG, HEIC supported · max 10 files</div>
+      </div>
+
+      <div class="preview-strip" id="previewStrip"></div>
+      <div class="preview-count" id="previewCount"></div>
+    </div>
+
+    <!-- Section 5: Notes -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <!-- Notes SVG -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="#b8986a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+        </div>
         <div class="section-title-block">
           <span class="section-label-en">Additional Notes</span>
           <span class="section-label-km">កំណត់ចំណាំ</span>
         </div>
       </div>
       <div class="field">
-             <textarea id="other" rows="3" placeholder="…"></textarea>
+        <textarea id="other" rows="3" placeholder="Special instructions, colour preferences, etc."></textarea>
       </div>
     </div>
 
-    <!-- ⑤ Total -->
+    <!-- Total -->
     <div class="total-section">
       <div class="total-inner">
         <div class="total-left">
@@ -813,13 +982,20 @@
       </div>
     </div>
 
-    <!-- ⑥ Actions -->
+    <!-- Actions -->
     <div class="btn-section">
       <button class="btn-copy" onclick="copyText()">
-        <span>⎘</span> Copy Order
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+        </svg>
+        Copy Order
       </button>
       <button class="btn-save" id="saveBtn" onclick="saveToCloud()">
-        <span>↑</span> Save Order
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/>
+          <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/>
+        </svg>
+        Save Order
       </button>
     </div>
 
@@ -833,6 +1009,7 @@
 
 <script>
   let discountType = 'flat';
+  let uploadedFiles = [];
 
   /* ── DISCOUNT TOGGLE ── */
   function showDiscount() {
@@ -842,12 +1019,9 @@
 
   function setDiscountType(type) {
     discountType = type;
-    const flatBtn = document.getElementById('btn_flat');
-    const percBtn = document.getElementById('btn_perc');
-    const symbol  = document.getElementById('dist_symbol');
-    flatBtn.classList.toggle('active', type === 'flat');
-    percBtn.classList.toggle('active', type === 'perc');
-    symbol.textContent = type === 'flat' ? '-$' : '%';
+    document.getElementById('btn_flat').classList.toggle('active', type === 'flat');
+    document.getElementById('btn_perc').classList.toggle('active', type === 'perc');
+    document.getElementById('dist_symbol').textContent = type === 'flat' ? '-$' : '%';
     calc();
   }
 
@@ -858,32 +1032,28 @@
     const df = parseFloat(document.getElementById('del_fee').value)       || 0;
     const dv = parseFloat(document.getElementById('discount_val').value)  || 0;
 
-    const discountAmount = discountType === 'flat'
-      ? dv
-      : (hp + gp) * (dv / 100);
-
+    const discountAmount = discountType === 'flat' ? dv : (hp + gp) * (dv / 100);
     const total = Math.max(0, hp + gp + df - discountAmount).toFixed(2);
+
     document.getElementById('total-num').textContent = total;
 
-    // Bump animation
     const amountEl = document.getElementById('display_total');
     amountEl.classList.remove('bump');
     void amountEl.offsetWidth;
     amountEl.classList.add('bump');
     setTimeout(() => amountEl.classList.remove('bump'), 200);
 
-    // Breakdown
     const parts = [];
-    if (hp > 0) parts.push(`$${hp.toFixed(2)} frame`);
-    if (gp > 0) parts.push(`$${gp.toFixed(2)} lens`);
-    if (df > 0) parts.push(`$${df.toFixed(2)} shipping`);
-    if (discountAmount > 0) parts.push(`–$${discountAmount.toFixed(2)} discount`);
+    if (hp > 0) parts.push('$' + hp.toFixed(2) + ' frame');
+    if (gp > 0) parts.push('$' + gp.toFixed(2) + ' lens');
+    if (df > 0) parts.push('$' + df.toFixed(2) + ' ship');
+    if (discountAmount > 0) parts.push('-$' + discountAmount.toFixed(2) + ' disc');
     document.getElementById('breakdown').textContent = parts.length ? parts.join(' + ') : '—';
 
     return total;
   }
 
-  /* ── PHONE HANDLING ── */
+  /* ── PHONE — no space between +855 and digits ── */
   let phoneDigits = '';
 
   function validatePhoneKey(e) {
@@ -906,7 +1076,6 @@
   }
 
   function handlePhone(input) {
-    // Strip any non-digit
     const raw = input.value.replace(/\D/g, '');
     phoneDigits = raw.slice(0, 9);
     updatePhoneDisplay();
@@ -915,9 +1084,9 @@
   function updatePhoneDisplay() {
     const inp    = document.getElementById('phone');
     const prefix = document.getElementById('phone_prefix');
-    const digits = phoneDigits;
+    const d      = phoneDigits;
 
-    if (digits.length === 0) {
+    if (d.length === 0) {
       inp.classList.remove('has-prefix');
       prefix.classList.remove('visible');
       inp.value = '';
@@ -927,81 +1096,164 @@
     inp.classList.add('has-prefix');
     prefix.classList.add('visible');
 
-    // Format: XX XXX XXXX  (2 + 3 + 4 = 9 digits max)
-    let formatted = '';
-    if (digits.length <= 2) {
-      formatted = digits;
-    } else if (digits.length <= 5) {
-      formatted = digits.slice(0,2) + ' ' + digits.slice(2);
-    } else {
-      formatted = digits.slice(0,2) + ' ' + digits.slice(2,5) + ' ' + digits.slice(5);
-    }
-    inp.value = formatted;
+    /* Format: XX XXX XXXX */
+    let fmt = '';
+    if (d.length <= 2)      fmt = d;
+    else if (d.length <= 5) fmt = d.slice(0,2) + ' ' + d.slice(2);
+    else                    fmt = d.slice(0,2) + ' ' + d.slice(2,5) + ' ' + d.slice(5);
+    inp.value = fmt;
   }
 
   function getFullPhone() {
     if (!phoneDigits) return '—';
     const d = phoneDigits;
-    let formatted = '';
-    if (d.length <= 2) formatted = d;
-    else if (d.length <= 5) formatted = d.slice(0,2) + ' ' + d.slice(2);
-    else formatted = d.slice(0,2) + ' ' + d.slice(2,5) + ' ' + d.slice(5);
-    return `+855 ${formatted}`;
+    let fmt = '';
+    if (d.length <= 2)      fmt = d;
+    else if (d.length <= 5) fmt = d.slice(0,2) + ' ' + d.slice(2);
+    else                    fmt = d.slice(0,2) + ' ' + d.slice(2,5) + ' ' + d.slice(5);
+    /* NO space between +855 and the number */
+    return '+855' + fmt.replace(/\s/g, '');
   }
 
-  /* ── COPY ── */
+  /* ── IMAGE UPLOAD ── */
+  function handleDragOver(e) {
+    e.preventDefault();
+    document.getElementById('uploadZone').classList.add('drag-over');
+  }
+  function handleDragLeave(e) {
+    document.getElementById('uploadZone').classList.remove('drag-over');
+  }
+  function handleDrop(e) {
+    e.preventDefault();
+    document.getElementById('uploadZone').classList.remove('drag-over');
+    handleFiles(e.dataTransfer.files);
+  }
+
+  function handleFiles(files) {
+    const MAX = 10;
+    Array.from(files).forEach(file => {
+      if (!file.type.startsWith('image/')) return;
+      if (uploadedFiles.length >= MAX) {
+        showToast('Max 10 images allowed');
+        return;
+      }
+      uploadedFiles.push(file);
+      const reader = new FileReader();
+      reader.onload = function(ev) {
+        addPreview(ev.target.result, uploadedFiles.length - 1);
+      };
+      reader.readAsDataURL(file);
+    });
+    updateCount();
+  }
+
+  function addPreview(src, idx) {
+    const strip = document.getElementById('previewStrip');
+    const item  = document.createElement('div');
+    item.className = 'preview-item';
+    item.dataset.idx = idx;
+
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = 'Preview';
+
+    const btn = document.createElement('button');
+    btn.className = 'preview-remove';
+    btn.title = 'Remove';
+    btn.onclick = () => removePreview(idx);
+
+    item.appendChild(img);
+    item.appendChild(btn);
+    strip.appendChild(item);
+  }
+
+  function removePreview(idx) {
+    uploadedFiles.splice(idx, 1);
+    /* Rebuild entire preview strip */
+    const strip = document.getElementById('previewStrip');
+    strip.innerHTML = '';
+    uploadedFiles.forEach((file, i) => {
+      const reader = new FileReader();
+      reader.onload = ev => addPreview(ev.target.result, i);
+      reader.readAsDataURL(file);
+    });
+    updateCount();
+  }
+
+  function updateCount() {
+    const countEl = document.getElementById('previewCount');
+    if (uploadedFiles.length > 0) {
+      countEl.textContent = uploadedFiles.length + ' image' + (uploadedFiles.length > 1 ? 's' : '') + ' attached';
+      countEl.classList.add('visible');
+    } else {
+      countEl.classList.remove('visible');
+    }
+  }
+
+  /* ── COPY — mobile-friendly, no fixed-width padding ── */
   function copyText() {
-    const v = id => document.getElementById(id).value;
+    const v  = id => document.getElementById(id).value;
     const hp = parseFloat(v('handle_price')) || 0;
     const gp = parseFloat(v('glass_price'))  || 0;
     const df = parseFloat(v('del_fee'))       || 0;
     const dv = parseFloat(v('discount_val'))  || 0;
     const dsAmt = discountType === 'flat' ? dv : (hp + gp) * (dv / 100);
     const total = document.getElementById('total-num').textContent;
-    const dsNote = dsAmt > 0
-      ? `-  Discount : ${v('discount_note') || 'Promo'} (-$${dsAmt.toFixed(2)})\n`
-      : '';
-
-    const lines = [];
-    if (hp > 0) lines.push(`+ $${hp.toFixed(2)} frame`);
-    if (gp > 0) lines.push(`+ $${gp.toFixed(2)} lens`);
-    if (df > 0) lines.push(`+ $${df.toFixed(2)} shipping`);
-    if (dsAmt > 0) lines.push(`- $${dsAmt.toFixed(2)} discount`);
-    const summary = lines.map((l,i) => i === 0 ? l : `              ${l}`).join('\n');
 
     const purposeEl = document.getElementById('purpose');
-    const purposeVal = purposeEl.options[purposeEl.selectedIndex]?.text || '—';
+    const purposeVal = purposeEl.selectedIndex > 0
+      ? purposeEl.options[purposeEl.selectedIndex].value
+      : '—';
     const delCoEl = document.getElementById('del_co');
-    const delCoVal = delCoEl.options[delCoEl.selectedIndex]?.text || '—';
+    const delCoVal = delCoEl.selectedIndex > 0
+      ? delCoEl.options[delCoEl.selectedIndex].value
+      : '—';
 
-    const template =
-`━━━━━━━━━━━━━━━━━━━━━━
-    CONFIRM ORDER
-━━━━━━━━━━━━━━━━━━━━━━
--  Frame    : ${v('handle_type') || '—'} ($${hp.toFixed(2)})
--  Lens     : ${v('glass_type') || '—'} ($${gp.toFixed(2)})
--  OS / OD  : ${v('left_rx') || '0'} / ${v('right_rx') || '0'}
--  Purpose  : ${purposeVal}
--  Phone    : ${getFullPhone()}
--  Location : ${v('location') || '—'}
--  Delivery : ${delCoVal} ($${df.toFixed(2)})
-${dsNote}-  Notes    : ${v('other') || '—'}
-━━━━━━━━━━━━━━━━━━━━━━
--  Summary  : ${summary}
-━━━━━━━━━━━━━━━━━━━━━━
--  TOTAL    : $${total}
-━━━━━━━━━━━━━━━━━━━━━━`;
+    const imgCount = uploadedFiles.length > 0
+      ? uploadedFiles.length + ' image(s) attached'
+      : 'None';
+
+    /* Build price breakdown lines — short, no padding */
+    const priceLines = [];
+    if (hp > 0)      priceLines.push('Frame:    $' + hp.toFixed(2));
+    if (gp > 0)      priceLines.push('Lens:     $' + gp.toFixed(2));
+    if (df > 0)      priceLines.push('Ship:     $' + df.toFixed(2));
+    if (dsAmt > 0)   priceLines.push('Discount: -$' + dsAmt.toFixed(2) +
+                     (v('discount_note') ? ' (' + v('discount_note') + ')' : ''));
+
+    const divider = '--------------------';
+
+    const template = [
+      '[ WKC ORDER CONFIRM ]',
+      divider,
+      'Frame:   ' + (v('handle_type') || '—'),
+      'Lens:    ' + (v('glass_type')  || '—'),
+      'OS:      ' + (v('left_rx')     || '—'),
+      'OD:      ' + (v('right_rx')    || '—'),
+      'Purpose: ' + purposeVal,
+      divider,
+      'Phone:   ' + getFullPhone(),
+      'City:    ' + (v('location')    || '—'),
+      'Carrier: ' + delCoVal,
+      divider,
+      ...priceLines,
+      divider,
+      'TOTAL:   $' + total,
+      divider,
+      'Images:  ' + imgCount,
+      'Notes:   ' + (v('other') || '—'),
+    ].join('\n');
 
     navigator.clipboard.writeText(template)
       .then(() => showToast('Order copied to clipboard', 'gold'))
-      .catch(() => showToast('Copy failed'));
+      .catch(() => showToast('Copy failed — try again'));
   }
 
   /* ── SAVE ── */
   async function saveToCloud() {
     const btn  = document.getElementById('saveBtn');
     const orig = btn.innerHTML;
-    btn.innerHTML = '<span class="spinner"></span><span>Saving…</span>';
+    btn.innerHTML = '<span class="spinner"></span><span>Saving...</span>';
     btn.disabled  = true;
     await new Promise(r => setTimeout(r, 1600));
     btn.innerHTML = orig;
@@ -1013,9 +1265,8 @@ ${dsNote}-  Notes    : ${v('other') || '—'}
   function showToast(msg, type = 'success') {
     const toast = document.getElementById('toast');
     const dot   = document.getElementById('toast-dot');
-    const msgEl = document.getElementById('toast-msg');
+    document.getElementById('toast-msg').textContent = msg;
     dot.className = 'toast-dot' + (type === 'gold' ? ' gold' : '');
-    msgEl.textContent = msg;
     toast.classList.add('show');
     setTimeout(() => toast.classList.remove('show'), 2800);
   }
