@@ -1226,21 +1226,20 @@
     const template = [
       '[ WKC ORDER CONFIRM ]',
       divider,
-      'Frame:   ' + (v('handle_type') || '—'),
-      'Lens:    ' + (v('glass_type')  || '—'),
-      'OS:      ' + (v('left_rx')     || '—'),
-      'OD:      ' + (v('right_rx')    || '—'),
+      'Frame  : ' + (v('handle_type') || '—'),
+      'Lens   : ' + (v('glass_type')  || '—'),
+      'OS     : ' + (v('left_rx')     || '—'),
+      'OD     : ' + (v('right_rx')    || '—'),
       'Purpose: ' + purposeVal,
       divider,
-      'Phone:   ' + getFullPhone(),
-      'City:    ' + (v('location')    || '—'),
+      'Phone  : ' + getFullPhone(),
+      'City   : ' + (v('location')    || '—'),
       'Carrier: ' + delCoVal,
       divider,
       ...priceLines,
       divider,
       'TOTAL:   $' + total,
       divider,
-      'Images:  ' + imgCount,
       'Notes:   ' + (v('other') || '—'),
     ].join('\n');
 
@@ -1272,6 +1271,87 @@
   }
 
   calc();
+
+async function saveToCloud() {
+    const saveBtn = document.getElementById('saveBtn');
+    
+    // 1. Gather all your data from the form
+    const frame = document.getElementById('handle_type').value || "—";
+    const framePrice = parseFloat(document.getElementById('handle_price').value) || 0;
+    const lens = document.getElementById('glass_type').value || "—";
+    const lensPrice = parseFloat(document.getElementById('glass_price').value) || 0;
+    const delFee = parseFloat(document.getElementById('del_fee').value) || 0;
+    const total = (framePrice + lensPrice + delFee).toFixed(2);
+    
+    const os = document.getElementById('left_rx').value || "—";
+    const od = document.getElementById('right_rx').value || "—";
+    const purpose = document.getElementById('purpose').value || "—";
+    
+    const phone = document.getElementById('phone').value || "—";
+    const city = document.getElementById('location').value || "—";
+    const carrier = document.getElementById('del_co').value || "—";
+    const notes = document.getElementById('other').value || "None";
+
+    // 2. The Designed Receipt Template
+    const receiptText = `<b>━━━━━━━━━━━━━━━</b>
+<b>   WKC ORDER CONFIRM</b>
+<b>━━━━━━━━━━━━━━━</b>
+<pre>
+■ ITEMS
+  Frame: ${frame}
+  Price: $${framePrice.toFixed(2)}
+  Lens:  ${lens}
+  Price: $${lensPrice.toFixed(2)}
+  Delivery: $${delFee.toFixed(2)}
+
+■ SPECS
+  OS: ${os} | OD: ${od}
+  P: ${purpose}
+
+■ LOGISTICS
+  Phone: +855 ${phone}
+  City:  ${city}
+  Ship:  ${carrier}
+
+■ INFO
+  Notes: ${notes}
+</pre>
+<b>━━━━━━━━━━━━━━━</b>
+<b>  TOTAL DUE : $${total}</b>
+<b>━━━━━━━━━━━━━━━</b>`;
+
+    // 3. UI Loading state
+    saveBtn.innerHTML = '<div class="spinner"></div> Sending...';
+    saveBtn.disabled = true;
+
+    // 4. Send to your Group
+    const botToken = "YOUR_ACTUAL_BOT_TOKEN_HERE"; // <-- Put your token here!
+    const chatId = "-5299694549"; 
+
+    try {
+        const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                chat_id: chatId,
+                text: receiptText,
+                parse_mode: 'HTML'
+            })
+        });
+
+        if (response.ok) {
+            showToast("Order Sent to Group!", "gold");
+        } else {
+            showToast("Error: Bot could not send", "danger");
+        }
+    } catch (err) {
+        showToast("Network Error", "danger");
+    } finally {
+        saveBtn.innerHTML = 'Save Order';
+        saveBtn.disabled = false;
+    }
+}
+
 </script>
 </body>
 </html>
